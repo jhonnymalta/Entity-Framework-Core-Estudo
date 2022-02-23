@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Categoria>
+@{
+    ViewData["Title"] = "Todas as Categorias";
+}
+<div class="row">
+    <div class="col-10">
+        <h2>Todas as categorias</h2>
+    </div>
+    <div class="col-2">
+        <a class="btn btn-primary" asp-action="Criar" asp-controller="Categoria">Criar Nova</a>
+    </div>
+
+</div>
+<div class="row">
+    @foreach (var categoria in @Model)
+    {
+        <div class="col-2 m-2 base-cat">
+            <h3>@categoria.Nome</h3>
+        </div>
+    }
+
+</div>
+
+
+
+<style>
+    .base-cat {
+        background-color: gray;
+        border-radius: 6px;
+        color: whitesmoke
+    }
+</style>

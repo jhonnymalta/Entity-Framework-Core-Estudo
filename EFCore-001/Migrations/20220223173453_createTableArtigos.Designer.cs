@@ -4,6 +4,7 @@ using EFCore_001.Dados;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCore_001.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220223173453_createTableArtigos")]
+    partial class createTableArtigos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,6 +49,8 @@ namespace EFCore_001.Migrations
                         .HasColumnType("nvarchar(500)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Categoria_ID");
 
                     b.ToTable("Artigos");
                 });
@@ -87,6 +91,17 @@ namespace EFCore_001.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Usuarios");
+                });
+
+            modelBuilder.Entity("EFCore_001.Models.Artigo", b =>
+                {
+                    b.HasOne("EFCore_001.Models.Categoria", "Categoria")
+                        .WithMany()
+                        .HasForeignKey("Categoria_ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Categoria");
                 });
 #pragma warning restore 612, 618
         }

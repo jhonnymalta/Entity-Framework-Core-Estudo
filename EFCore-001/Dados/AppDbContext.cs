@@ -1,4 +1,5 @@
-﻿using EFCore_001.Models;
+﻿using EFCore_001.Controllers;
+using EFCore_001.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace EFCore_001.Dados
@@ -12,5 +13,8 @@ namespace EFCore_001.Dados
         //Setar os Modelos
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Artigo> Artigos { get; set; }
+
+      
     }
 }
